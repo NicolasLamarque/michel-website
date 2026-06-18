@@ -63,7 +63,7 @@ const services = [
 
       <!-- Contenu hero -->
       <div class="relative z-10 space-y-6 max-w-4xl">
-        <span class="text-[#d4af37] font-bold tracking-[0.4em] uppercase text-xs block">Mauricie · Shawinigan - ste-Tite</span>
+        <span class="text-[#d4af37] font-bold tracking-[0.4em] uppercase text-xs block">Mauricie · Shawinigan</span>
 
         <h1 class="text-6xl sm:text-8xl md:text-9xl font-black text-white uppercase tracking-tighter leading-[0.9]">
           L'Art de<br/><span class="text-[#d4af37]">Bâtir</span>
