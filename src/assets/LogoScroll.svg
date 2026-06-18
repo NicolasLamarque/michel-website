@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="155 155 370 145" fill="none">
+  <!-- Ligne haute -->
+  <line x1="160" y1="165" x2="520" y2="165" stroke="#d4af37" stroke-width="0.8" opacity="0.5"/>
+  <!-- MICHEL & Co -->
+  <text x="340" y="215" text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="48px" font-weight="700"
+    letter-spacing="0.06em" fill="#f0f0f0">MICHEL<tspan fill="#d4af37" font-size="38px" dy="-2"> &amp; Co</tspan></text>
+  <!-- CONSTRUCTION -->
+  <text x="340" y="248" text-anchor="middle"
+    font-family="Georgia, serif"
+    font-size="13px" letter-spacing="0.42em" fill="#d4af37">CONSTRUCTION</text>
+  <!-- Ligne basse -->
+  <line x1="220" y1="262" x2="460" y2="262" stroke="#d4af37" stroke-width="0.8" opacity="0.5"/>
+  <!-- Tagline -->
+  <text x="340" y="280" text-anchor="middle"
+    font-family="Georgia, serif"
+    font-size="10px" letter-spacing="0.28em" fill="#666">MAURICIE · QUALITÉ · PRÉCISION</text>
+</svg>

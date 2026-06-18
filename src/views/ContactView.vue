@@ -51,7 +51,7 @@ const soumettre = async () => {
         Parlons de <span class="text-[#d4af37]">votre projet</span>
       </h1>
       <p class="text-slate-500 text-base font-light max-w-xl mx-auto">
-        Réponse sous 24h. Estimation gratuite et sans engagement.
+        Réponse Rapide. Estimation gratuite et sans engagement.
       </p>
     </section>
 
@@ -237,7 +237,7 @@ const soumettre = async () => {
                 </template>
               </button>
 
-              <p class="text-center text-[10px] text-slate-600">Réponse garantie sous 24h — Estimation gratuite et sans engagement</p>
+              <p class="text-center text-[10px] text-slate-600">Estimation gratuite et sans engagement</p>
 
             </template>
           </div>

@@ -1,9 +1,18 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { ArrowRight, HardHat, Wrench, Home, Layers, ChevronDown } from 'lucide-vue-next'
 import { realisations } from '../text.js'
+import BadgesCredibilite from '../components/BadgesCredibilite.vue'
 
 const vedettes = realisations.slice(0, 2)
+
+// Parallax subtil — 8% max
+const parallaxY = ref(0)
+const onScroll = () => {
+  parallaxY.value = window.scrollY * 0.08
+}
+onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 const services = [
   {
@@ -32,21 +41,35 @@ const services = [
 <template>
   <div class="bg-[#0f0a0a]">
 
-    <!-- ─── HERO ─────────────────────────────────────────────────────── -->
+    <!-- ─── HERO PARALLAX ─────────────────────────────────────────── -->
     <section class="relative h-screen flex flex-col justify-center items-center text-center px-6 overflow-hidden">
 
-      <!-- Fond décoratif -->
-      <div class="absolute inset-0 bg-gradient-to-b from-[#1a0a0a]/60 via-transparent to-[#0f0a0a]"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#d4af37]/4 blur-3xl pointer-events-none"></div>
+      <!-- Image de fond avec parallax subtil -->
+      <div
+        class="absolute inset-0 scale-110"
+        :style="{ transform: `translateY(${parallaxY}px) scale(1.12)` }"
+      >
+        <img
+          src="/gars-toit.png"
+          alt=""
+          class="w-full h-full object-cover object-center"
+          style="filter: brightness(0.38) saturate(0.8);"
+        />
+      </div>
 
+      <!-- Overlay gradient -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0f0a0a]/30 via-transparent to-[#0f0a0a]"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0f0a0a]/40 via-transparent to-[#0f0a0a]/40"></div>
+
+      <!-- Contenu hero -->
       <div class="relative z-10 space-y-6 max-w-4xl">
-        <span class="text-[#d4af37] font-bold tracking-[0.4em] uppercase text-xs block">Mauricie • Québec</span>
+        <span class="text-[#d4af37] font-bold tracking-[0.4em] uppercase text-xs block">Mauricie · Québec</span>
 
         <h1 class="text-6xl sm:text-8xl md:text-9xl font-black text-white uppercase tracking-tighter leading-[0.9]">
           L'Art de<br/><span class="text-[#d4af37]">Bâtir</span>
         </h1>
 
-        <p class="text-slate-400 text-base sm:text-lg font-light max-w-md mx-auto leading-relaxed">
+        <p class="text-slate-300 text-base sm:text-lg font-light max-w-md mx-auto leading-relaxed">
           Entrepreneur général. Rénovation résidentielle, toiture, finitions — exécution rigoureuse, résultats durables.
         </p>
 
@@ -60,7 +83,7 @@ const services = [
           </router-link>
           <router-link
             to="/realisations"
-            class="flex items-center gap-2 border border-zinc-700 text-slate-300 px-8 py-4 font-bold uppercase text-xs tracking-widest hover:border-[#d4af37] hover:text-[#d4af37] transition-colors"
+            class="flex items-center gap-2 border border-zinc-600 text-slate-300 px-8 py-4 font-bold uppercase text-xs tracking-widest hover:border-[#d4af37] hover:text-[#d4af37] transition-colors"
           >
             Voir nos réalisations
           </router-link>
@@ -73,26 +96,9 @@ const services = [
       </div>
     </section>
 
-    <!-- ─── CHIFFRES ───────────────────────────────────────────────── -->
+    <!-- ─── Card Securitaires ───────────────────────────────────────────────── -->
     <section class="border-y border-zinc-800/50 bg-[#140e0e]">
-      <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div>
-          <p class="text-4xl font-black text-[#d4af37]">10+</p>
-          <p class="text-xs text-slate-500 uppercase tracking-widest mt-1 font-medium">Années d'expérience</p>
-        </div>
-        <div>
-          <p class="text-4xl font-black text-[#d4af37]">150+</p>
-          <p class="text-xs text-slate-500 uppercase tracking-widest mt-1 font-medium">Projets complétés</p>
-        </div>
-        <div>
-          <p class="text-4xl font-black text-[#d4af37]">RBQ</p>
-          <p class="text-xs text-slate-500 uppercase tracking-widest mt-1 font-medium">Licence active</p>
-        </div>
-        <div>
-          <p class="text-4xl font-black text-[#d4af37]">24h</p>
-          <p class="text-xs text-slate-500 uppercase tracking-widest mt-1 font-medium">Délai de réponse</p>
-        </div>
-      </div>
+      <BadgesCredibilite />
     </section>
 
     <!-- ─── SERVICES ──────────────────────────────────────────────── -->

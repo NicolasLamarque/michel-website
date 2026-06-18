@@ -30,8 +30,8 @@ import { realisations } from '../text.js'
       >
         <!-- Image -->
         <div class="w-full md:w-3/5 group relative">
-          <div class="absolute -inset-1 bg-[#d4af37]/15 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-1000"></div>
-          <div class="relative overflow-hidden border border-zinc-800">
+          <div class="absolute -inset-1 bg-[#d4af37]/15 rounded-4xl blur opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+          <div class="relative overflow-hidden border rounded-3xl border-zinc-800">
             <img
               :src="item.image"
               :alt="item.titre"
