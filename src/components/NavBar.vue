@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { Menu, X, Home, Images, ClipboardList } from 'lucide-vue-next'
-import logoUrl from '../assets/Logo.svg'
+import logoUrl from '../assets/Logo4.png'
 import logoScrollUrl from '../assets/LogoScroll.svg'
 
 const isMenuOuvert = ref(false)
@@ -23,7 +23,7 @@ const navLinks = [
 <template>
   <header
     class="border-b border-zinc-800/60 bg-[#1a1212]/80 backdrop-blur sticky top-0 z-50 px-4 sm:px-8 overflow-visible transition-all duration-300"
-    :class="scrolled ? 'h-26 sm:h-27' : 'h-52 sm:h-50'"
+    :class="scrolled ? 'h-35 sm:h-42' : 'h-52 sm:h-50'"
   >
     <div class="h-full max-w-6xl mx-auto pb-2"
       :class="scrolled
