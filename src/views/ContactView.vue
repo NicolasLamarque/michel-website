@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { Phone, Mail, MapPin, ArrowRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-vue-next'
+import { formatTelephone } from '../utils/formatTelephone'
 
 const form = ref({
   nom: '',
@@ -20,6 +21,10 @@ const typesProjet = [
 ]
 
 const statut = ref('') // '', 'envoi', 'succes', 'erreur'
+
+const surTelephoneSaisi = (e) => {
+  form.value.telephone = formatTelephone(e.target.value)
+}
 
 const soumettre = async () => {
   statut.value = 'envoi'
@@ -168,8 +173,11 @@ const soumettre = async () => {
                 <div class="space-y-2">
                   <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400">Téléphone</label>
                   <input
-                    v-model="form.telephone"
+                    :value="form.telephone"
+                    @input="surTelephoneSaisi"
                     type="tel"
+                    inputmode="numeric"
+                    maxlength="14"
                     placeholder="(819) 000-0000"
                     class="w-full bg-[#0f0a0a] border border-zinc-800 px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-[#d4af37] transition-colors"
                   />

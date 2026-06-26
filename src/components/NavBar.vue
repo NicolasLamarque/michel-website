@@ -69,28 +69,64 @@ const navLinks = [
       </button>
     </div>
 
-    <!-- Menu mobile -->
-    <div
-      v-show="isMenuOuvert"
-      class="sm:hidden absolute top-full left-0 w-full bg-[#1a1212] border-b border-zinc-800 shadow-xl py-4 px-6 flex flex-col gap-1 animate-fadeIn"
+    <!-- Overlay -->
+    <Transition
+      enter-active-class="transition-opacity duration-300"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="transition-opacity duration-300"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
     >
-      <RouterLink
-        v-for="link in navLinks"
-        :key="link.to"
-        :to="link.to"
+      <div
+        v-if="isMenuOuvert"
         @click="fermerMenu"
-        class="text-base font-medium py-3 border-b border-zinc-800/40 text-slate-300 hover:text-[#d4af37] transition"
-        active-class="text-[#d4af37] font-semibold"
+        class="sm:hidden fixed inset-0 bg-black/70 z-40"
+      ></div>
+    </Transition>
+
+    <!-- Menu mobile — panneau coulissant depuis la droite -->
+    <Transition
+      enter-active-class="transition-transform duration-300 ease-out"
+      enter-from-class="translate-x-full"
+      enter-to-class="translate-x-0"
+      leave-active-class="transition-transform duration-300 ease-in"
+      leave-from-class="translate-x-0"
+      leave-to-class="translate-x-full"
+    >
+      <div
+        v-if="isMenuOuvert"
+        class="sm:hidden fixed top-0 right-0 h-full w-72 max-w-[85%] bg-[#1a1212] border-l border-zinc-800 shadow-2xl z-50 flex flex-col"
       >
-        {{ link.label }}
-      </RouterLink>
-      <RouterLink
-        to="/contact"
-        @click="fermerMenu"
-        class="mt-3 text-center bg-[#d4af37] text-black text-xs font-black uppercase tracking-widest px-4 py-3"
-      >
-        Soumission rapide
-      </RouterLink>
-    </div>
+        <div class="flex items-center justify-between px-6 py-5 border-b border-zinc-800/60">
+          <span class="text-[#d4af37] font-bold tracking-[0.3em] uppercase text-xs">Menu</span>
+          <button @click="fermerMenu" class="p-1 text-slate-400 hover:text-white transition" aria-label="Fermer le menu">
+            <X class="w-5 h-5" />
+          </button>
+        </div>
+
+        <nav class="flex flex-col gap-1 px-6 py-6">
+          <RouterLink
+            v-for="link in navLinks"
+            :key="link.to"
+            :to="link.to"
+            @click="fermerMenu"
+            class="flex items-center gap-3 text-base font-medium py-3 border-b border-zinc-800/40 text-slate-300 hover:text-[#d4af37] transition"
+            active-class="text-[#d4af37] font-semibold"
+          >
+            <component :is="link.icon" class="w-5 h-5" />
+            {{ link.label }}
+          </RouterLink>
+          <RouterLink
+            to="/contact"
+            @click="fermerMenu"
+            class="mt-4 flex items-center justify-center gap-2 text-center bg-[#d4af37] text-black text-xs font-black uppercase tracking-widest px-4 py-3 hover:bg-white transition-colors"
+          >
+            <ClipboardList class="w-4 h-4" />
+            Soumission rapide
+          </RouterLink>
+        </nav>
+      </div>
+    </Transition>
   </header>
 </template>
