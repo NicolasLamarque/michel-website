@@ -4,6 +4,8 @@ import HomeView from '../views/HomeView.vue'
 import RealisationsView from '../views/RealisationsView.vue'
 import ContactView from '../views/ContactView.vue'
 import MentionsLegalesView from '../views/MentionsLegalesView.vue'
+import AdminLoginView from '../views/AdminLoginView.vue'
+import AdminView from '../views/AdminView.vue'
 
 const routes = [
   {
@@ -25,8 +27,17 @@ const routes = [
     path: '/mentions-legales',
     name: 'MentionsLegales',
     component: MentionsLegalesView
+  },
+  {
+    path: '/admin/connexion',
+    name: 'AdminLogin',
+    component: AdminLoginView
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: AdminView
   }
-
 
 ]
 

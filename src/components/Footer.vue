@@ -25,6 +25,18 @@ import { RouterLink } from 'vue-router'
         <a href="https://lamarquets.com" target="_blank" class="text-zinc-700 text-[10px] hover:text-[#d4af37] transition">Conception : LamarqueTs</a>
       </div>
 
+      <RouterLink
+        to="/admin/connexion"
+        title="Connexion administration"
+        class="group shrink-0 w-9 h-9 rounded-full border border-zinc-700/60 flex items-center justify-center hover:border-[#d4af37] hover:bg-[#d4af37]/10 transition-all"
+      >
+        <svg viewBox="0 0 24 24" class="w-4 h-4 text-zinc-600 group-hover:text-[#d4af37] transition-colors" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="11" width="14" height="9" rx="1.5" />
+          <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+          <circle cx="12" cy="15.5" r="1.4" fill="currentColor" stroke="none" />
+        </svg>
+      </RouterLink>
+
     </div>
   </footer>
 </template>

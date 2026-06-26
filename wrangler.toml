@@ -1,0 +1,8 @@
+name = "michel-website"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-06-26"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "michel-vite-messages"
+database_id = "41daf9c6-d953-493b-a38f-6aef86568fa8"
