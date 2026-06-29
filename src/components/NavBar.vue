@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { Menu, X, Home, Images, ClipboardList } from 'lucide-vue-next'
-import logoUrl from '../assets/logo4.png'
+import logoUrl from '../assets/LOGO_3.png'
 import logoScrollUrl from '../assets/LogoScroll.svg'
 
 const isMenuOuvert = ref(false)

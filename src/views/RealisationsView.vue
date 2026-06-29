@@ -1,6 +1,7 @@
 <script setup>
 import { ArrowRight } from 'lucide-vue-next'
 import { realisations } from '../text.js'
+import AvantApres from '../components/AvantApres.vue'
 </script>
 
 <template>
@@ -18,6 +19,26 @@ import { realisations } from '../text.js'
       <div class="mt-10 animate-bounce">
         <div class="w-px h-12 bg-gradient-to-b from-[#d4af37] to-transparent mx-auto"></div>
       </div>
+    </section>
+
+    <!-- Avant / Après -->
+    <section class="max-w-6xl mx-auto px-6 pt-24 pb-8">
+      <div class="text-center mb-14">
+        <span class="text-[#d4af37] font-bold tracking-[0.4em] uppercase text-xs block mb-4">La transformation</span>
+        <h2 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-4">
+          Avant <span class="text-[#d4af37]">/</span> Après
+        </h2>
+        <p class="text-slate-500 text-base font-light max-w-lg mx-auto">
+          Un même espace, métamorphosé. Déplacez le curseur pour découvrir le résultat.
+        </p>
+      </div>
+
+      <AvantApres
+        avant="/BlocAvant.png"
+        apres="/blocApres.png"
+        avant-label="Avant"
+        apres-label="Après"
+      />
     </section>
 
     <!-- Projets -->

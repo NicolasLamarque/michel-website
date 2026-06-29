@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { LogOut, Mail, Phone, Trash2, Check, Eye, Loader2, Inbox } from 'lucide-vue-next'
+import { LogOut, Mail, Phone, Trash2, Check, Eye, Loader2, Inbox, Printer } from 'lucide-vue-next'
 
 const router = useRouter()
 const messages = ref([])
@@ -64,6 +64,57 @@ const formaterDate = (iso) => {
     dateStyle: 'medium',
     timeStyle: 'short'
   })
+}
+
+const echapperHtml = (texte) => {
+  const div = document.createElement('div')
+  div.textContent = texte ?? ''
+  return div.innerHTML
+}
+
+const imprimer = (msg) => {
+  const nom = echapperHtml(msg.nom)
+  const courriel = echapperHtml(msg.courriel)
+  const telephone = echapperHtml(msg.telephone) || 'Non fourni'
+  const typeProjet = echapperHtml(msg.type_projet) || 'Non précisé'
+  const message = echapperHtml(msg.message)
+
+  const fenetre = window.open('', '_blank')
+  fenetre.document.write(`
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+      <meta charset="utf-8">
+      <title>Message de ${msg.nom}</title>
+      <style>
+        body { font-family: Georgia, serif; color: #1a1212; padding: 48px; max-width: 700px; margin: 0 auto; }
+        h1 { font-size: 22px; margin-bottom: 4px; }
+        .sous-titre { color: #6b6b6b; font-size: 13px; margin-bottom: 28px; }
+        .or { color: #b8902c; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+        td { padding: 6px 0; font-size: 14px; vertical-align: top; }
+        td.label { color: #6b6b6b; width: 140px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; }
+        .message { white-space: pre-wrap; border-top: 1px solid #ddd; padding-top: 20px; line-height: 1.6; font-size: 14px; }
+        @media print { body { padding: 0; } }
+      </style>
+    </head>
+    <body>
+      <h1>Michel & Co Construction <span class="or">— Demande de contact</span></h1>
+      <p class="sous-titre">${formaterDate(msg.created_at)}</p>
+      <table>
+        <tr><td class="label">Nom</td><td>${nom}</td></tr>
+        <tr><td class="label">Courriel</td><td>${courriel}</td></tr>
+        <tr><td class="label">Téléphone</td><td>${telephone}</td></tr>
+        <tr><td class="label">Type de projet</td><td>${typeProjet}</td></tr>
+        <tr><td class="label">Statut</td><td>${statutLabel[msg.statut]}</td></tr>
+      </table>
+      <p class="message">${message}</p>
+    </body>
+    </html>
+  `)
+  fenetre.document.close()
+  fenetre.focus()
+  fenetre.print()
 }
 
 onMounted(charger)
@@ -145,25 +196,36 @@ onMounted(charger)
             <button
               v-if="msg.statut !== 'lu'"
               @click="changerStatut(msg, 'lu')"
+              title="Marquer lu"
               class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-blue-400 transition-colors"
             >
-              <Eye class="w-3.5 h-3.5" />
-              Marquer lu
+              <Eye class="w-4 h-4 sm:w-3.5 sm:h-3.5" />
+              <span class="hidden sm:inline">Marquer lu</span>
             </button>
             <button
               v-if="msg.statut !== 'traite'"
               @click="changerStatut(msg, 'traite')"
+              title="Marquer traité"
               class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-emerald-400 transition-colors"
             >
-              <Check class="w-3.5 h-3.5" />
-              Marquer traité
+              <Check class="w-4 h-4 sm:w-3.5 sm:h-3.5" />
+              <span class="hidden sm:inline">Marquer traité</span>
+            </button>
+            <button
+              @click="imprimer(msg)"
+              title="Imprimer / PDF"
+              class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#d4af37] transition-colors"
+            >
+              <Printer class="w-4 h-4 sm:w-3.5 sm:h-3.5" />
+              <span class="hidden sm:inline">Imprimer / PDF</span>
             </button>
             <button
               @click="supprimer(msg)"
+              title="Supprimer"
               class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-red-400 transition-colors ml-auto"
             >
-              <Trash2 class="w-3.5 h-3.5" />
-              Supprimer
+              <Trash2 class="w-4 h-4 sm:w-3.5 sm:h-3.5" />
+              <span class="hidden sm:inline">Supprimer</span>
             </button>
           </div>
         </div>

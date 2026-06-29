@@ -1,19 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="155 155 370 145" fill="none">
+  <defs>
+    <radialGradient id="mbd-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#fffef6" stop-opacity="0.95"/>
+      <stop offset="55%"  stop-color="#fff3cf" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#fff3cf" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mbd-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#fff2cb" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#fff2cb" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="mbd-s1" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="0.8"/></filter>
+    <filter id="mbd-s2" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.4"/></filter>
+    <clipPath id="mbd-lines">
+      <rect x="160" y="162.5" width="360" height="5"/>
+      <rect x="220" y="259.5" width="240" height="5"/>
+    </clipPath>
+  </defs>
+
   <!-- Ligne haute -->
   <line x1="160" y1="165" x2="520" y2="165" stroke="#d4af37" stroke-width="0.8" opacity="0.5"/>
-  <!-- MICHEL & Co -->
+
+  <!-- MBD inc. -->
   <text x="340" y="215" text-anchor="middle"
     font-family="Georgia, 'Times New Roman', serif"
     font-size="48px" font-weight="700"
-    letter-spacing="0.06em" fill="#f0f0f0">MBD<tspan fill="#d4af37" font-size="38px" dy="-2"> inc.</tspan></text>
+    letter-spacing="0.06em" fill="#d4af37">M<tspan fill="#650b12">B<tspan fill="#d4af37">D</tspan><tspan fill="#d4af37" font-size="38px" dy="-2"> inc.</tspan></tspan></text>
+
   <!-- CONSTRUCTION -->
   <text x="340" y="248" text-anchor="middle"
     font-family="Georgia, serif"
     font-size="13px" letter-spacing="0.42em" fill="#d4af37">CONSTRUCTION</text>
+
   <!-- Ligne basse -->
   <line x1="220" y1="262" x2="460" y2="262" stroke="#d4af37" stroke-width="0.8" opacity="0.5"/>
+
   <!-- Tagline -->
   <text x="340" y="280" text-anchor="middle"
     font-family="Georgia, serif"
     font-size="10px" letter-spacing="0.28em" fill="#666">MAURICIE · QUALITÉ · PRÉCISION</text>
+
+  <!-- Reflet : halo qui traîne + petit cœur brillant, confinés dans la ligne -->
+  <g clip-path="url(#mbd-lines)">
+    <g opacity="0">
+      <circle cx="166" cy="165" r="10" fill="url(#mbd-halo)" filter="url(#mbd-s2)"/>
+      <circle cx="166" cy="262" r="10" fill="url(#mbd-halo)" filter="url(#mbd-s2)"/>
+      <circle cx="174" cy="165" r="2" fill="url(#mbd-core)" filter="url(#mbd-s1)"/>
+      <circle cx="174" cy="262" r="2" fill="url(#mbd-core)" filter="url(#mbd-s1)"/>
+      <animateTransform attributeName="transform" type="translate"
+        values="0 0; 384 0; 384 0" keyTimes="0; 0.3; 1"
+        dur="5.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity"
+        values="0; 1; 1; 0; 0" keyTimes="0; 0.05; 0.24; 0.3; 1"
+        dur="5.5s" repeatCount="indefinite"/>
+    </g>
+  </g>
 </svg>
